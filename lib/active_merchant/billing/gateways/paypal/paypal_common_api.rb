@@ -4,7 +4,7 @@ module ActiveMerchant #:nodoc:
     module PaypalCommonAPI
       include Empty
 
-      API_VERSION = '124'
+      API_VERSION = '204'
 
       URLS = {
         :test => { :certificate => 'https://api.sandbox.paypal.com/2.0/',
@@ -589,7 +589,7 @@ module ActiveMerchant #:nodoc:
           xml.tag! 'n2:Custom', options[:custom] unless options[:custom].blank?
 
           xml.tag! 'n2:InvoiceID', (options[:order_id] || options[:invoice_id]) unless (options[:order_id] || options[:invoice_id]).blank?
-          add_button_source(xml)
+          
 
           # The notify URL applies only to DoExpressCheckoutPayment.
           # This value is ignored when set in SetExpressCheckout or GetExpressCheckoutDetails
