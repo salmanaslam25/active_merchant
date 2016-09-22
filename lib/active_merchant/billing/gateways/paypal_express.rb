@@ -169,7 +169,7 @@ module ActiveMerchant #:nodoc:
               end
 
               xml.tag! 'n2:CallbackURL', options[:callback_url] unless options[:callback_url].blank?
-
+              add_button_source(xml)
               add_payment_details(xml, money, currency_code, options)
               if options[:shipping_options]
                 options[:shipping_options].each do |shipping_option|
