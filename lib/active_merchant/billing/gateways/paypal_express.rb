@@ -99,14 +99,13 @@ module ActiveMerchant #:nodoc:
 
       def build_sale_or_authorization_request(action, money, options)
         currency_code = options[:currency] || currency(money)
-        options[:payment_action] = action
-        options[:express_request] = true
 
         xml = Builder::XmlMarkup.new :indent => 2
         xml.tag! 'DoExpressCheckoutPaymentReq', 'xmlns' => PAYPAL_NAMESPACE do
           xml.tag! 'DoExpressCheckoutPaymentRequest', 'xmlns:n2' => EBAY_NAMESPACE do
             xml.tag! 'n2:Version', API_VERSION
             xml.tag! 'n2:DoExpressCheckoutPaymentRequestDetails' do
+              #xml.tag! 'n2:PaymentAction', action
               xml.tag! 'n2:Token', options[:token]
               xml.tag! 'n2:PayerID', options[:payer_id]
               add_button_source(xml)
